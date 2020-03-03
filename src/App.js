@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
 import './App.css';
-import ShowList from './components/ShowList';
+import ShowTasks from './components/ShowTasks';
 import AddTask from "./components/AddTask";
 
 class App extends Component {
   state = {
     newTask: '',
-    list: [],
+    tasks: [],
   };
 
   handleChange = (e) => {
@@ -18,19 +18,27 @@ class App extends Component {
 
   handleSubmit = (e) => {
       e.preventDefault();
-      const lengthOfList = this.state.list.length;
-      const list = [...this.state.list, {id: lengthOfList + 1, value: this.state.newTask}];
-      this.setState({
-          list,
-          newTask: '',
-      })
+      const lengthOfList = this.state.tasks.length;
+      const tasks = [...this.state.tasks, {id: lengthOfList + 1, value: this.state.newTask}];
+
+      if(this.state.newTask === '') {
+          this.setState({
+              ...this.state
+          })
+      }
+      else {
+          this.setState({
+              tasks,
+              newTask: '',
+          })
+      }
   };
 
   handleDelete = (id) => {
-    const list = this.state.list.filter(task => task.id !== id);
+    const tasks = this.state.tasks.filter(task => task.id !== id);
     this.setState({
         ...this.state,
-        list,
+        tasks,
     })
   };
 
@@ -42,7 +50,7 @@ class App extends Component {
                   <h2>ToDo's</h2>
               </div>
               <section className="list">
-                <ShowList list={this.state.list} delete={this.handleDelete} />
+                <ShowTasks list={this.state.tasks} delete={this.handleDelete} />
               </section>
               <div className="main">
                   <AddTask value={this.state.newTask} change={this.handleChange} submit={this.handleSubmit} />
