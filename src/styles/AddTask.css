@@ -3,6 +3,10 @@
     margin: 0 auto;
 }
 
+.addTask span:nth-child(1) {
+    font-weight: 500;
+}
+
 .addTask input {
     display: block;
     width: calc(100% - 4px);

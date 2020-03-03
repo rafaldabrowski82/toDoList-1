@@ -2,7 +2,7 @@ import React from 'react';
 import '../styles/ShowList.css';
 
 const ShowList = (props) => {
-    const listOfTasks = props.list.map(task => <li key={task.id}>{task.value}</li>);
+    const listOfTasks = props.list.map(task => <li key={task.id} onClick={() => props.delete(task.id)}>{task.value}</li>);
     return (
         <div className="showList">
             <>

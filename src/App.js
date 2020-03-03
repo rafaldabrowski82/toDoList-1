@@ -26,6 +26,14 @@ class App extends Component {
       })
   };
 
+  handleDelete = (id) => {
+    const list = this.state.list.filter(task => task.id !== id);
+    this.setState({
+        ...this.state,
+        list,
+    })
+  };
+
   render() {
     return (
         <div className="App">
@@ -34,7 +42,7 @@ class App extends Component {
                   <h2>ToDo's</h2>
               </div>
               <section className="list">
-                <ShowList list={this.state.list}/>
+                <ShowList list={this.state.list} delete={this.handleDelete} />
               </section>
               <div className="main">
                   <AddTask value={this.state.newTask} change={this.handleChange} submit={this.handleSubmit} />
