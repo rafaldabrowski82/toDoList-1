@@ -47,15 +47,19 @@ class App extends Component {
         return (
             <div className="App">
                 <div className="wrapper">
+
                     <div className="header">
                         <h2>ToDo's</h2>
                     </div>
+
                     <section className="list">
                         <ShowTasks list={this.state.tasks} delete={this.handleDelete}/>
                     </section>
+
                     <div className="main">
                         <AddTask value={this.state.newTask} change={this.handleChange} submit={this.handleSubmit}/>
                     </div>
+
                 </div>
             </div>
         );
