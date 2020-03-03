@@ -1,0 +1,21 @@
+.showList {
+    text-align: center;
+}
+
+.showList p {
+    border: 1px solid lightcoral;
+    line-height: 35px;
+}
+
+.showList li {
+    margin: 3px;
+    background-color: white;
+    text-align: left;
+    padding-left: 30px;
+    text-decoration: none;
+}
+
+.showList li:hover {
+    text-decoration: line-through;
+    cursor: pointer;
+}

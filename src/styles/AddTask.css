@@ -1,0 +1,13 @@
+.addTask {
+    width: 98%;
+    margin: 0 auto;
+}
+
+.addTask input {
+    display: block;
+    width: calc(100% - 4px);
+    background-color: #ddd;
+    margin-top: 5px;
+    border: 2px solid lightskyblue;
+    height: 1.5rem;
+}

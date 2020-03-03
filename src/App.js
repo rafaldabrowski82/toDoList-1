@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import './App.css';
+import ShowList from './components/ShowList';
+import AddTask from "./components/AddTask";
 
 class App extends Component {
   state = {
-    list: [],
+    list: [
+        {id: 1, value: 'pierwsze zadanie'},
+        {id: 2, value: 'drugie zadanie'},
+    ],
   };
 
   render() {
@@ -11,16 +16,13 @@ class App extends Component {
         <div className="App">
           <div className="wrapper">
               <div className="header">
-                  <h1>ToDo's</h1>
+                  <h2>ToDo's</h2>
               </div>
               <section className="list">
-                <p>lista</p>
+                <ShowList list={this.state.list} />
               </section>
               <div className="main">
-                  <div className="addTask">
-                      <span><b>Add a new todo</b> ( press Enter to add ):</span>
-                      <input type="text"/>
-                  </div>
+                  <AddTask list={this.state.list} />
               </div>
           </div>
         </div>
