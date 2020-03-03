@@ -5,10 +5,25 @@ import AddTask from "./components/AddTask";
 
 class App extends Component {
   state = {
-    list: [
-        {id: 1, value: 'pierwsze zadanie'},
-        {id: 2, value: 'drugie zadanie'},
-    ],
+    newTask: '',
+    list: [],
+  };
+
+  handleChange = (e) => {
+      this.setState({
+          ...this.state,
+          newTask: e.target.value,
+      })
+  };
+
+  handleSubmit = (e) => {
+      e.preventDefault();
+      const lengthOfList = this.state.list.length;
+      const list = [...this.state.list, {id: lengthOfList + 1, value: this.state.newTask}];
+      this.setState({
+          list,
+          newTask: '',
+      })
   };
 
   render() {
@@ -19,10 +34,10 @@ class App extends Component {
                   <h2>ToDo's</h2>
               </div>
               <section className="list">
-                <ShowList list={this.state.list} />
+                <ShowList list={this.state.list}/>
               </section>
               <div className="main">
-                  <AddTask list={this.state.list} />
+                  <AddTask value={this.state.newTask} change={this.handleChange} submit={this.handleSubmit} />
               </div>
           </div>
         </div>
