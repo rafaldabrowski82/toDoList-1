@@ -1,7 +1,7 @@
 import React from 'react';
-import '../styles/ShowList.css';
+import '../styles/ShowTasks.css';
 
-const ShowList = (props) => {
+const ShowTasks = (props) => {
     const listOfTasks = props.list.map(task => <li key={task.id} onClick={() => props.delete(task.id)}>{task.value}</li>);
     return (
         <div className="showList">
@@ -13,4 +13,4 @@ const ShowList = (props) => {
     );
 };
 
-export default ShowList;
+export default ShowTasks;

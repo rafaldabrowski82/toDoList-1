@@ -1,56 +1,65 @@
-import React, { Component } from 'react';
+import React, {Component} from 'react';
 import './App.css';
-import ShowList from './components/ShowList';
+import ShowTasks from './components/ShowTasks';
 import AddTask from "./components/AddTask";
 
 class App extends Component {
-  state = {
-    newTask: '',
-    list: [],
-  };
+    state = {
+        newTask: '',
+        tasks: [],
+    };
 
-  handleChange = (e) => {
-      this.setState({
-          ...this.state,
-          newTask: e.target.value,
-      })
-  };
+    handleChange = (e) => {
+        this.setState({
+            ...this.state,
+            newTask: e.target.value,
+        })
+    };
 
-  handleSubmit = (e) => {
-      e.preventDefault();
-      const lengthOfList = this.state.list.length;
-      const list = [...this.state.list, {id: lengthOfList + 1, value: this.state.newTask}];
-      this.setState({
-          list,
-          newTask: '',
-      })
-  };
+    handleSubmit = (e) => {
+        e.preventDefault();
+        const lengthOfList = this.state.tasks.length;
+        const tasks = [...this.state.tasks, {id: lengthOfList + 1, value: this.state.newTask}];
 
-  handleDelete = (id) => {
-    const list = this.state.list.filter(task => task.id !== id);
-    this.setState({
-        ...this.state,
-        list,
-    })
-  };
+        if (this.state.newTask === '') {
+            this.setState({
+                ...this.state
+            })
+        }
+        else
+        {
+            this.setState({
+                tasks,
+                newTask: '',
+            })
+        }
+    };
 
-  render() {
-    return (
-        <div className="App">
-          <div className="wrapper">
-              <div className="header">
-                  <h2>ToDo's</h2>
-              </div>
-              <section className="list">
-                <ShowList list={this.state.list} delete={this.handleDelete} />
-              </section>
-              <div className="main">
-                  <AddTask value={this.state.newTask} change={this.handleChange} submit={this.handleSubmit} />
-              </div>
-          </div>
-        </div>
-    );
-  }
+    handleDelete = (id) => {
+        const tasks = this.state.tasks.filter(task => task.id !== id);
+        this.setState({
+            ...this.state,
+            tasks,
+        })
+    };
+
+    render() {
+        return (
+            <div className="App">
+                <div className="wrapper">
+                    <div className="header">
+                        <h2>ToDo's</h2>
+                    </div>
+                    <section className="list">
+                        <ShowTasks list={this.state.tasks} delete={this.handleDelete}/>
+                    </section>
+                    <div className="main">
+                        <AddTask value={this.state.newTask} change={this.handleChange} submit={this.handleSubmit}/>
+                    </div>
+                </div>
+            </div>
+        );
+    }
 }
 
 export default App;
